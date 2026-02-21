@@ -1,18 +1,23 @@
+import { isAxiosError } from 'axios'
 import { toast } from 'sonner'
 
-export function toastMessageHandler(error: Error) {
-	if (error.message) {
-		const errorMessage = error.message
-		const firstDotIndex = errorMessage.indexOf('.')
+export function toastMessageHandler(error: unknown) {
+	let message = 'Server error'
 
-		if (firstDotIndex !== -1) {
-			toast.error(errorMessage.slice(0, firstDotIndex), {
-				description: errorMessage.slice(firstDotIndex + 1)
-			})
-		} else {
-			toast.error(errorMessage)
-		}
+	if (isAxiosError(error)) {
+		message =
+			error.response?.data?.message || error.message || 'Server error'
+	} else if (error instanceof Error) {
+		message = error.message
+	}
+
+	const firstDotIndex = message.indexOf('.')
+
+	if (firstDotIndex !== -1) {
+		toast.error(message.slice(0, firstDotIndex), {
+			description: message.slice(firstDotIndex + 1).trim()
+		})
 	} else {
-		toast.error('Server error')
+		toast.error(message)
 	}
 }

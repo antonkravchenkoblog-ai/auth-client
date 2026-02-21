@@ -1,14 +1,15 @@
 'use client';
 
 import { type PropsWithChildren } from 'react'
+import {Toaster} from "sonner";
 
-import { TanstackQueryProvider, ToastProvider, ThemeProvider } from './index'
+import { TanstackQueryProvider, ThemeProvider } from './index'
 
 export function MainProvider({ children }: PropsWithChildren<unknown>) {
 	return (
 		<ThemeProvider>
 			<TanstackQueryProvider>
-				<ToastProvider />
+				<Toaster position='bottom-right' />
 				{children}
 			</TanstackQueryProvider>
 		</ThemeProvider>

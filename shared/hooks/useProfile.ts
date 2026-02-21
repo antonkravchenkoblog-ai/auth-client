@@ -3,13 +3,15 @@ import { useQuery } from '@tanstack/react-query'
 import { userService } from '@/features/user/services'
 
 export function useProfile() {
-	const { data: user, isLoading } = useQuery({
+	const { data: user, isLoading, isError } = useQuery({
 		queryKey: ['profile'],
-		queryFn: () => userService.findProfile()
+		queryFn: () => userService.findProfile(),
+		staleTime: 30 * 1000
 	})
 
 	return {
 		user,
-		isLoading
+		isLoading,
+		isError
 	}
 }

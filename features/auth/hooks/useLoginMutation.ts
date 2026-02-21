@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
 import { toast } from 'sonner'
 
@@ -11,8 +10,6 @@ import { authService } from '../services'
 export function useLoginMutation(
 	setIsShowFactor: Dispatch<SetStateAction<boolean>>
 ) {
-	const router = useRouter()
-
 	const { mutate: login, isPending: isLoadingLogin } = useMutation({
 		mutationKey: ['login user'],
 		mutationFn: ({
@@ -22,13 +19,13 @@ export function useLoginMutation(
 			values: TypeLoginSchema
 			recaptcha: string
 		}) => authService.login(values, recaptcha),
-		onSuccess(data: any) {
+		onSuccess(data) {
 			if (data.message) {
-				toastMessageHandler(data)
+				toast.info(data.message)
 				setIsShowFactor(true)
 			} else {
 				toast.success('Successfully logged in')
-				router.push('/dashboard/settings')
+				window.location.href = '/dashboard/settings'
 			}
 		},
 		onError(error) {

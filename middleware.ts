@@ -1,10 +1,11 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
+const SESSION_COOKIE_NAME = process.env.SESSION_COOKIE_NAME || 'connect.sid'
+
 export default function middleware(request: NextRequest) {
 	const { url, cookies } = request
 
-	const session = cookies.get('session')?.value
-
+	const session = cookies.get(SESSION_COOKIE_NAME)?.value
 	const isAuthPage = url.includes('/auth')
 
 	if (isAuthPage) {

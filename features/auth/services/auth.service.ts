@@ -1,33 +1,35 @@
-import {api} from '@/shared/api'
+import { api } from '@/shared/api'
 
-import {TypeLoginSchema, TypeRegisterSchema} from '../schemes'
-import {IUser} from '../types'
+import { TypeLoginSchema, TypeRegisterSchema } from '../schemes'
+import { IUser } from '../types'
 
 class AuthService {
 	public async register(body: TypeRegisterSchema, recaptcha?: string) {
 		const headers = recaptcha ? { recaptcha } : undefined
 
-		return await api.post<IUser>('auth/register', body, {
+		const { data } = await api.post<{ message: string }>('auth/register', body, {
 			headers
 		})
+		return data
 	}
 
 	public async login(body: TypeLoginSchema, recaptcha?: string) {
 		const headers = recaptcha ? { recaptcha } : undefined
 
-		return await api.post<IUser>('auth/login', body, {
+		const { data } = await api.post<IUser & { message?: string }>('auth/login', body, {
 			headers
 		})
+		return data
 	}
 
 	public async oauthGoogle() {
-		return await api.get<{ url: string }>(
-			`auth/oauth/connect/google`
-		)
+		const { data } = await api.get<{ url: string }>('auth/oauth/connect/google')
+		return data
 	}
 
 	public async logout() {
-		return await api.post('auth/logout')
+		const { data } = await api.post('auth/logout')
+		return data
 	}
 }
 

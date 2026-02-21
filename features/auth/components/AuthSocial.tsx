@@ -1,26 +1,16 @@
 'use client'
 
-import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
 import { Button, Separator } from '@/components/ui'
 
-import { authService } from '../services'
-
 export function AuthSocial() {
-	const router = useRouter()
-
-	const { mutateAsync } = useMutation({
-		mutationKey: ['oauth by provider'],
-		mutationFn: async () =>
-			await authService.oauthGoogle()
-	})
-
-	const onClick = async () => {
-		const response = await mutateAsync()
-
-		if (response) {
-			router.push(response.url)
+	const onClick = () => {
+		const serverUrl = process.env.SERVER_URL
+		if (!serverUrl) {
+			console.error('SERVER_URL is not configured')
+			return
 		}
+
+		window.location.href = `${serverUrl}/auth/oauth/connect/google`
 	}
 
 	return (
@@ -37,7 +27,7 @@ export function AuthSocial() {
 			</div>
 
 			<div className='flex w-full flex-col space-y-4'>
-				<Button onClick={() => onClick()} variant='outline'>
+				<Button onClick={onClick} variant='outline'>
 					<div className='mr-2 size-4'>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-google"
 						     viewBox="0 0 16 16">

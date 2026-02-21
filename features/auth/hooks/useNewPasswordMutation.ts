@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { toast } from 'sonner'
 
 import { toastMessageHandler } from '@/shared/utils'
@@ -8,7 +8,6 @@ import { TypeNewPasswordSchema } from '../schemes'
 import { passwordRecoveryService } from '@/features/auth/services'
 
 export function useNewPasswordMutation() {
-	const router = useRouter()
 	const searchParams = useSearchParams()
 
 	const token = searchParams.get('token')
@@ -26,7 +25,7 @@ export function useNewPasswordMutation() {
 			toast.success('Password successfully changed', {
 				description: 'Now you can sign in with your new password'
 			})
-			router.push('/dashboard/settings')
+			window.location.href = '/auth/login'
 		},
 		onError(error) {
 			toastMessageHandler(error)

@@ -1,9 +1,11 @@
-'use client';
+'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useState } from 'react'
+import { GoogleReCaptcha } from 'react-google-recaptcha-v3'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 
 import {
 	Button,
@@ -21,13 +23,14 @@ import {
 	FormMessage,
 	Input
 } from '@/components/ui'
+import { useLoginMutation } from '@/features/auth/hooks'
+import { LoginSchema, TypeLoginSchema } from '@/features/auth/schemes'
 
-import { useLoginMutation } from '../hooks'
-import { LoginSchema, TypeLoginSchema } from '../schemes'
 import { AuthSocial } from './AuthSocial'
 
 export function LoginForm() {
 	const [isShowTwoFactor, setIsShowFactor] = useState(false)
+	const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
 
 	const form = useForm<TypeLoginSchema>({
 		resolver: zodResolver(LoginSchema),
@@ -40,18 +43,20 @@ export function LoginForm() {
 	const { login, isLoadingLogin } = useLoginMutation(setIsShowFactor)
 
 	const onSubmit = (values: TypeLoginSchema) => {
-		// if (recaptchaValue) {
-		// 	login({ values, recaptcha: recaptchaValue })
-		// } else {
-		// 	toast.error('Please complete reCAPTCHA')
-		// }
+		if (recaptchaValue) {
+			login({ values, recaptcha: recaptchaValue })
+		} else {
+			toast.error('Please complete reCAPTCHA')
+		}
 	}
 
 	return (
 		<Card className='w-120'>
 			<CardHeader className='space-y-2'>
 				<CardTitle>Sign In</CardTitle>
-				<CardDescription>Welcome back! Please enter your details to sign in to your account.</CardDescription>
+				<CardDescription>
+					Welcome back! Please enter your details to sign in to your account.
+				</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<Form {...form}>
@@ -127,6 +132,8 @@ export function LoginForm() {
 							</>
 						)}
 						<div className='flex justify-center'>
+							<GoogleReCaptcha
+								onVerify={setRecaptchaValue} />
 						</div>
 						<Button type='submit' disabled={isLoadingLogin}>
 							Sign in to account
@@ -138,9 +145,12 @@ export function LoginForm() {
 
 			<CardFooter>
 				<Button variant='link' className='w-full font-normal'>
-					<Link href='/auth/register'>Don&#39;t have an account? Sign up</Link>
+					<Link href='/auth/register'>
+						Don&apos;t have an account? Sign up
+					</Link>
 				</Button>
 			</CardFooter>
 		</Card>
 	)
 }
+

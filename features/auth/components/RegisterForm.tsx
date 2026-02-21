@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useState } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
+import {GoogleReCaptcha} from "react-google-recaptcha-v3";
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
@@ -26,7 +26,6 @@ import {
 
 import { useRegisterMutation } from '../hooks'
 import { RegisterSchema, TypeRegisterSchema } from '../schemes'
-import { AuthSocial } from './AuthSocial'
 
 export function RegisterForm() {
 	const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
@@ -41,7 +40,7 @@ export function RegisterForm() {
 		}
 	})
 
-	const { register, isLoadingRegister } = useRegisterMutation()
+	const { register, isLoadingRegister, isSuccess } = useRegisterMutation()
 
 	const onSubmit = (values: TypeRegisterSchema) => {
 		if (recaptchaValue) {
@@ -49,6 +48,25 @@ export function RegisterForm() {
 		} else {
 			toast.error('Please complete reCAPTCHA')
 		}
+	}
+
+	if (isSuccess) {
+		return (
+			<Card className='w-120'>
+				<CardHeader className='space-y-2'>
+					<CardTitle>Check your email</CardTitle>
+					<CardDescription>
+						We&apos;ve sent a verification link to your email address.
+						Please check your inbox and click the link to verify your account.
+					</CardDescription>
+				</CardHeader>
+				<CardFooter>
+					<Button variant='link' className='w-full font-normal'>
+						<Link href='/auth/login'>Back to sign in</Link>
+					</Button>
+				</CardFooter>
+			</Card>
+		)
 	}
 
 	return (
@@ -135,13 +153,9 @@ export function RegisterForm() {
 							)}
 						/>
 						<div className='flex justify-center'>
-							{/*<ReCAPTCHA*/}
-							{/*	sitekey={*/}
-							{/*		process.env.GOOGLE_RECAPTCHA_SITE_KEY as string*/}
-							{/*	}*/}
-							{/*	onChange={setRecaptchaValue}*/}
-							{/*	theme={theme === 'light' ? 'light' : 'dark'}*/}
-							{/*/>*/}
+							<GoogleReCaptcha
+								onVerify={setRecaptchaValue}
+							/>
 						</div>
 						<Button type='submit' disabled={isLoadingRegister}>
 							Create account

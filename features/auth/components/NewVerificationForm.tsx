@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 import {
 	Card,
@@ -17,20 +17,27 @@ import { useVerificationMutation } from '../hooks'
 export function NewVerificationForm() {
 	const searchParams = useSearchParams()
 	const token = searchParams.get('token')
+	const hasRun = useRef(false)
 
 	const { verification } = useVerificationMutation()
 
 	useEffect(() => {
-		verification(token)
-	}, [token])
+		if (token && !hasRun.current) {
+			hasRun.current = true
+			verification(token)
+		}
+	}, [token, verification])
 
 	return (
 		<Card className='w-120'>
 			<CardHeader className='space-y-2'>
 				<CardTitle>Email Verification</CardTitle>
+				<CardDescription>
+					Verifying your email address...
+				</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<div>
+				<div className='flex justify-center'>
 					<Loading />
 				</div>
 			</CardContent>

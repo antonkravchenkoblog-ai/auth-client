@@ -33,9 +33,9 @@ export function SettingsForm() {
 	const form = useForm<TypeSettingsSchema>({
 		resolver: zodResolver(SettingsSchema),
 		values: {
-			name: user?.displayName || '',
-			email: user?.email || '',
-			isTwoFactorEnabled: user?.isTwoFactorEnabled || false
+			name: user?.displayName ?? '',
+			email: user?.email ?? '',
+			isTwoFactorEnabled: user?.isTwoFactorEnabled ?? false
 		}
 	})
 
@@ -45,13 +45,11 @@ export function SettingsForm() {
 		update(values)
 	}
 
-	if (!user) return null
-
 	return (
 		<Card className='w-100'>
 			<CardHeader className='flex flex-row items-center justify-between'>
 				<CardTitle>Profile Settings</CardTitle>
-				{isLoading ? <UserButtonLoading /> : <UserButton user={user} />}
+				{isLoading ? <UserButtonLoading /> : user && <UserButton user={user} />}
 			</CardHeader>
 			<CardContent>
 				{isLoading ? (
@@ -119,7 +117,7 @@ export function SettingsForm() {
 									</FormItem>
 								)}
 							/>
-							<Button type='submit' disabled={isLoadingUpdate}>
+							<Button type='submit' disabled={isLoadingUpdate || isLoading}>
 								Save
 							</Button>
 						</form>

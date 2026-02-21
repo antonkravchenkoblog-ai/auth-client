@@ -6,15 +6,13 @@ import { TypeSettingsSchema } from '../schemes'
 
 class UserService {
 	public async findProfile() {
-		const response = await api.get<IUser>('users/profile')
-
-		return response
+		const { data } = await api.get<IUser>('users/profile')
+		return data
 	}
 
 	public async updateProfile(body: TypeSettingsSchema) {
-		const response = await api.patch<IUser>('users/profile', body)
-
-		return response
+		const { data } = await api.patch<IUser>('users/profile', body)
+		return data
 	}
 }
 

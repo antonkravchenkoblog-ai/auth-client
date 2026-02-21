@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useState } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
+import {GoogleReCaptcha} from "react-google-recaptcha-v3";
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
@@ -29,7 +29,6 @@ import { NewPasswordSchema, TypeNewPasswordSchema } from '../schemes'
 
 export function NewPasswordForm() {
 	const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
-
 	const form = useForm<TypeNewPasswordSchema>({
 		resolver: zodResolver(NewPasswordSchema),
 		defaultValues: {
@@ -38,7 +37,7 @@ export function NewPasswordForm() {
 	})
 
 	const { newPassword, isLoadingNew } = useNewPasswordMutation()
-
+	
 	const onSubmit = (values: TypeNewPasswordSchema) => {
 		if (recaptchaValue) {
 			newPassword({ values, recaptcha: recaptchaValue })
@@ -78,13 +77,9 @@ export function NewPasswordForm() {
 							)}
 						/>
 						<div className='flex justify-center'>
-							{/*<ReCAPTCHA*/}
-							{/*	sitekey={*/}
-							{/*		process.env.GOOGLE_RECAPTCHA_SITE_KEY as string*/}
-							{/*	}*/}
-							{/*	onChange={setRecaptchaValue}*/}
-							{/*	theme={theme === 'light' ? 'light' : 'dark'}*/}
-							{/*/>*/}
+							<GoogleReCaptcha
+								onVerify={setRecaptchaValue}
+							/>
 						</div>
 						<Button type='submit' disabled={isLoadingNew}>
 							Continue

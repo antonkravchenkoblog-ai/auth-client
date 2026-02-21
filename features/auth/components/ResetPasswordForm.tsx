@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useState } from 'react'
+import {GoogleReCaptcha} from "react-google-recaptcha-v3";
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
@@ -77,13 +78,9 @@ export function ResetPasswordForm() {
 							)}
 						/>
 						<div className='flex justify-center'>
-							{/*<ReCAPTCHA*/}
-							{/*	sitekey={*/}
-							{/*		process.env.GOOGLE_RECAPTCHA_SITE_KEY as string*/}
-							{/*	}*/}
-							{/*	onChange={setRecaptchaValue}*/}
-							{/*	theme={theme === 'light' ? 'light' : 'dark'}*/}
-							{/*/>*/}
+							<GoogleReCaptcha
+								onVerify={setRecaptchaValue}
+							/>
 						</div>
 						<Button type='submit' disabled={isLoadingReset}>
 							Reset password

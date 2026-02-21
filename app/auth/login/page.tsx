@@ -1,11 +1,8 @@
-import type { Metadata } from 'next'
-
 import { LoginForm } from '@/features/auth/components'
+import {ReCaptchaProvider} from "@/shared/providers/ReCaptchaProvider";
 
-export const metadata: Metadata = {
-	title: 'Login to your account'
-}
+
 
 export default function LoginPage() {
-	return <LoginForm />
+	return <ReCaptchaProvider><LoginForm /></ReCaptchaProvider>
 }
