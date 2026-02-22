@@ -51,7 +51,7 @@ export function LoginForm() {
 	}
 
 	return (
-		<Card className='w-120'>
+		<Card>
 			<CardHeader className='space-y-2'>
 				<CardTitle>Sign In</CardTitle>
 				<CardDescription>
@@ -144,7 +144,7 @@ export function LoginForm() {
 			</CardContent>
 
 			<CardFooter>
-				<Button variant='link' className='w-full font-normal'>
+				<Button variant='link' className='w-full font-normal text-muted-foreground'>
 					<Link href='/auth/register'>
 						Don&apos;t have an account? Sign up
 					</Link>
@@ -153,4 +153,3 @@ export function LoginForm() {
 		</Card>
 	)
 }
-

@@ -52,7 +52,7 @@ export function RegisterForm() {
 
 	if (isSuccess) {
 		return (
-			<Card className='w-120'>
+			<Card>
 				<CardHeader className='space-y-2'>
 					<CardTitle>Check your email</CardTitle>
 					<CardDescription>
@@ -70,7 +70,7 @@ export function RegisterForm() {
 	}
 
 	return (
-		<Card className='w-120'>
+		<Card>
 			<CardHeader className='space-y-2'>
 				<CardTitle>Sign Up</CardTitle>
 				<CardDescription>Create an account to get started</CardDescription>

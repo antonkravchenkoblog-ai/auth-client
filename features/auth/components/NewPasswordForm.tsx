@@ -47,7 +47,7 @@ export function NewPasswordForm() {
 	}
 
 	return (
-		<Card className='w-100'>
+		<Card>
 			<CardHeader className='space-y-2'>
 				<CardTitle>New Password</CardTitle>
 				<CardDescription>Create a new password for your account</CardDescription>

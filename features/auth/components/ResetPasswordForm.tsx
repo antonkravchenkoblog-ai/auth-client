@@ -48,7 +48,7 @@ export function ResetPasswordForm() {
 	}
 
 	return (
-		<Card className='w-120'>
+		<Card>
 			<CardHeader className='space-y-2'>
 				<CardTitle>Reset Password</CardTitle>
 				<CardDescription>Enter your email to reset your password</CardDescription>

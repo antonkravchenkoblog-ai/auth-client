@@ -22,15 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning lang='en' className='dark'>
+    <html suppressHydrationWarning lang='en'>
     <body className={`${spaceMono.variable} antialiased`}>
     <MainProvider>
       <ThemeToggle />
-      <div className='relative flex min-h-screen flex-col'>
-        <div className='flex h-screen w-full items-center justify-center px-4'>
-          {children}
-        </div>
-      </div>
+        {children}
     </MainProvider>
     </body>
     </html>

@@ -29,7 +29,7 @@ export function NewVerificationForm() {
 	}, [token, verification])
 
 	return (
-		<Card className='w-120'>
+		<Card>
 			<CardHeader className='space-y-2'>
 				<CardTitle>Email Verification</CardTitle>
 				<CardDescription>
