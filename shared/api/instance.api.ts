@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { setupUnauthorizedInterceptor } from './interceptors'
 
-const baseURL = process.env.SERVER_URL || 'http://localhost:4000'
+const baseURL = process.env.SERVER_URL
 
 export const api = axios.create({
   baseURL,
