@@ -1,8 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
-const SESSION_COOKIE_NAME = process.env.SESSION_COOKIE_NAME || 'connect.sid'
+const SESSION_COOKIE_NAME = process.env.SESSION_COOKIE_NAME as string
 
-export default function proxy(request: NextRequest) {
+export default function middleware(request: NextRequest) {
 	const { url, cookies } = request
 
 	const session = cookies.get(SESSION_COOKIE_NAME)?.value
