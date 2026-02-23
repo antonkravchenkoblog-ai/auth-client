@@ -6,4 +6,3 @@ export const api = new FetchClient({
 		credentials: 'include'
 	}
 })
-
