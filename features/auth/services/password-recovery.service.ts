@@ -6,12 +6,11 @@ class PasswordRecoveryService {
 	public async reset(body: TypeResetPasswordSchema, recaptcha?: string) {
 		const headers = recaptcha ? { recaptcha } : undefined
 
-		const { data } = await api.post(
+		return await api.post(
 			'auth/password-recovery/reset',
 			body,
 			{ headers }
 		)
-		return data
 	}
 
 	public async new(
@@ -21,12 +20,11 @@ class PasswordRecoveryService {
 	) {
 		const headers = recaptcha ? { recaptcha } : undefined
 
-		const { data } = await api.post(
+		return await api.post(
 			`auth/password-recovery/new/${token}`,
 			body,
 			{ headers }
 		)
-		return data
 	}
 }
 

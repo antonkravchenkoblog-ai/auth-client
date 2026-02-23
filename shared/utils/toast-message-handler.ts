@@ -1,13 +1,9 @@
-import { isAxiosError } from 'axios'
 import { toast } from 'sonner'
 
 export function toastMessageHandler(error: unknown) {
 	let message = 'Server error'
 
-	if (isAxiosError(error)) {
-		message =
-			error.response?.data?.message || error.message || 'Server error'
-	} else if (error instanceof Error) {
+	 if (error instanceof Error) {
 		message = error.message
 	}
 
