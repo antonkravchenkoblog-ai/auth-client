@@ -1,6 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import {
@@ -28,7 +29,13 @@ import { SettingsSchema, TypeSettingsSchema } from '../schemes'
 import { UserButton, UserButtonLoading } from './UserButton'
 
 export function SettingsForm() {
-	const { user, isLoading } = useProfile()
+	const { user, isLoading, isError } = useProfile()
+
+	useEffect(() => {
+		if (!isLoading && isError) {
+			window.location.href = '/auth/login'
+		}
+	}, [isLoading, isError])
 
 	const form = useForm<TypeSettingsSchema>({
 		resolver: zodResolver(SettingsSchema),
