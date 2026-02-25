@@ -1,0 +1,5 @@
+export { NextDotJsIcon } from './NextDotJs'
+export { ShadcnUiIcon } from './ShadcnUi'
+export { TypeScriptIcon } from './TypeScript'
+export { PrismaIcon } from './Prisma'
+export { NestJsIcon } from './NestJs'

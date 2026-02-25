@@ -1,3 +1,4 @@
+import ActionButtons from "@/components/ActionButtons";
 import {MainProvider} from "@/shared/providers";
 import { ThemeToggle } from "@/components/ui";
 import type { Metadata } from "next";
@@ -26,6 +27,7 @@ export default function RootLayout({
     <body className={`${spaceMono.variable} antialiased`}>
     <MainProvider>
       <ThemeToggle />
+      <ActionButtons/>
         {children}
     </MainProvider>
     </body>

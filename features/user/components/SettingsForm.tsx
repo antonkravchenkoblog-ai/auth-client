@@ -1,5 +1,6 @@
 'use client'
 
+import {useProfile} from "@/features/user/hooks/useProfile";
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
@@ -21,7 +22,6 @@ import {
 	Loading,
 	Switch
 } from '@/components/ui'
-import { useProfile } from '@/shared/hooks'
 
 import { useUpdateProfileMutation } from '../hooks/useUpdateProfileMutation'
 import { SettingsSchema, TypeSettingsSchema } from '../schemes'

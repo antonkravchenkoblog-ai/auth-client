@@ -1,5 +1,12 @@
-import Image from "next/image";
+import ActionButtons from "@/components/ActionButtons";
 import React from 'react'
+import {
+	NestJsIcon,
+	NextDotJsIcon,
+	PrismaIcon,
+	ShadcnUiIcon,
+	TypeScriptIcon
+} from "@/components/stack-icons";
 export default function AuthLayout({
 	children,
 }: Readonly<{
@@ -15,59 +22,55 @@ export default function AuthLayout({
 						<div className='inline-flex h-10 w-10 items-center justify-center'>
 							<a href='https://tosha-code.xyz/' className='text-[28px] font-extrabold leading-none text-foreground'>AK</a>
 						</div>
-
 						<div>
 							<div className="space-y-4">
-								<div className="inline-flex items-center rounded-full border border-zinc-700 bg-zinc-800/50 px-3 py-1 text-xs font-semibold text-zinc-300 backdrop-blur-sm">
-									🚀 Save 4+ hours of setup
+								<div className="inline-flex items-center  rounded-full border border-zinc-700 bg-zinc-800/50 px-2 py-0.5 text-xs font-semibold text-zinc-300 backdrop-blur-sm">
+									🚀 Save a full day of setup
 								</div>
-								<h1 className="text-4xl mb-2 font-extrabold tracking-tight lg:text-5xl lg:leading-[1.1]">
-									Stop building auth from scratch.
+								<h1 className="text-3xl mb-2 font-extrabold tracking-tight lg:text-4xl lg:leading-[1.2]">
+									Production auth you can <br/> actually maintain
 								</h1>
 							</div>
-							<ul className='mt-5 hidden lg:grid gap-3 text-[0.95rem] text-muted-foreground'>
-								<li>									Stop wasting hours setting up auth, tokens, and bot protection
+							<ul className="mt-5 hidden lg:grid gap-3 text-[0.85rem] text-zinc-300 list-disc pl-5 lg:list-inside">
+								<li>Copy-pasteable auth for real apps (front + back)
 								</li>
-								<li>Get a secure, production-ready auth system for $5 with just two files</li>
-								<li>Adapt designs in minutes via AI — no bloat or external dependencies</li>
+								<li>Secure flows + reCAPTCHA, ready out of the box</li>
+								<li>Get support when you’re stuck</li>
 							</ul>
 							
 							<h5 className='block text-[0.75rem] mt-2 text-grey lg:hidden'>
-								Every time you start a new project, you waste hours setting up authentication. I solved this: for just $5, you get two files that integrate instantly. Drop them into your codebase, use an AI prompt to match your UI, and you'll have a secure, production-ready login system with no bloated dependencies!
+								Every time you start a new project, you waste hours setting up authentication.
+								Get a secure, production-ready auth system with support. Adapt designs in minutes via AI — no bloat or external dependencies.
 							</h5>
 							
-							<div className="pt-8 ">
-								<p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-5">
-									Powered by industry standards
-								</p>
-								<div className="flex flex-wrap gap-4 items-center">
-									
+							<div className="pt-10">
+								<div className="flex flex-wrap gap-4 items-center justify-center lg:justify-start">
 									<div className="group flex flex-col items-center gap-2" title="Next.js">
-										<div className="w-14 h-14 flex items-center justify-center bg-card border  rounded-lg shadow-lg transition-all duration-300 group-hover:-translate-y-1 ">
-											<Image width={150} height={150} src={"/nextdotjs.svg"} alt="Next.js" className="w-7 stroke-white text-white fill-white h-7" />
+										<div className="w-10 h-10 flex items-center justify-center bg-card border  rounded-lg shadow-lg transition-all duration-300 group-hover:-translate-y-1 ">
+											<NextDotJsIcon className="h-5 w-5 text-foreground/80" />
 										</div>
 									</div>
 									<div className="group flex flex-col items-center gap-2" title="Shadcn UI">
-										<div className="w-14 h-14 flex items-center justify-center bg-card border  rounded-lg shadow-lg transition-all duration-300 group-hover:-translate-y-1 ">
-											<Image width={150} height={150} src={'/shadcnui.svg'} alt="Shadcn UI" className="w-6 h-6" />
+										<div className="w-10 h-10 flex items-center justify-center bg-card border  rounded-lg shadow-lg transition-all duration-300 group-hover:-translate-y-1 ">
+											<ShadcnUiIcon className="h-5 w-5 text-foreground/80" />
 										</div>
 									</div>
 									
 									<div className="group flex flex-col items-center gap-2" title="TypeScript">
-										<div className="w-14 h-14 flex items-center justify-center bg-card border  rounded-lg shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-											<Image width={150} height={150} src={"/typescript.svg"} alt="TypeScript" className="w-7 h-7 rounded-sm" />
+										<div className="w-10 h-10 flex items-center justify-center bg-card border  rounded-lg shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+											<TypeScriptIcon className="h-5 w-5 text-foreground/80" />
 										</div>
 									</div>
 									
-									<div className="group flex flex-col items-center gap-2" title="Prisma">
-										<div className="w-14 h-14 flex items-center justify-center bg-card border  rounded-lg shadow-lg transition-all duration-300 group-hover:-translate-y-1 ">
-											<Image width={150} height={150} src={'/prisma.svg'} alt="Prisma" className="w-7 h-7" />
+									<div className="group flex flex-col items-center gap-2" title="TypeScript">
+										<div className="w-10 h-10 flex items-center justify-center bg-card border  rounded-lg shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+											<PrismaIcon className="h-5 w-5 text-foreground/80" />
 										</div>
 									</div>
-									
-									<div className="group flex flex-col items-center gap-2" title="reCAPTCHA"><div className="w-14 h-14 flex items-center justify-center bg-card border  rounded-lg shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-										<Image width={150} height={150} src={"/nestjs.svg"} alt="reCAPTCHA" className="w-7 h-7" />
-									</div>
+									<div className="group flex flex-col items-center gap-2" title="TypeScript">
+										<div className="w-10 h-10 flex items-center justify-center bg-card border  rounded-lg shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+											<NestJsIcon className="h-5 w-5 text-foreground/80" />
+										</div>
 									</div>
 									
 							
@@ -90,7 +93,7 @@ export default function AuthLayout({
 					</div>
 				</div>
 
-				<div className='flex items-center justify-center bg-background px-4 pb-12 lg:bg-muted/55 lg:py-6'>
+				<div className='flex items-center justify-center bg-background px-4 pb-24 lg:bg-muted/55 lg:py-6'>
 					<div className='w-full max-w-[520px] lg:max-w-115'>{children}</div>
 				</div>
 			</div>
