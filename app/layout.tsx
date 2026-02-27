@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang='en'>
     <head>
-      <meta property="og:title" content="The Rock" />
+      <meta property="og:title" content="Authentication System" />
       <meta property="og:type" content="video.movie" />
       <meta property="og:url" content="https://auth.tosha-code.xyz/auth/login" />
       <meta property="og:image" content="https://files.catbox.moe/c1vkn8.png" />
