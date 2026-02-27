@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
-const words = ["Implementation Help", "App developement", "Direct Support"];
+const words = ["Implementation Help", "App development", "Direct Support"];
 
 const RotatingText = () => {
 	const [index, setIndex] = useState(0);

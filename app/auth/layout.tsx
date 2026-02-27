@@ -31,8 +31,8 @@ export default function AuthLayout({
 									Production auth you can <br/> actually maintain
 								</h1>
 							</div>
-							<ul className="mt-5 hidden lg:grid gap-3 text-[0.85rem] text-zinc-300 list-disc pl-5 lg:list-inside">
-								<li>Copy-pasteable auth for real apps (front + back)
+							<ul className="mt-5 hidden lg:grid gap-3 text-[0.85rem] dark:text-zinc-300 list-disc pl-5 lg:list-inside">
+								<li>Copy-pastable auth for real apps (front + back)
 								</li>
 								<li>Secure flows + reCAPTCHA, ready out of the box</li>
 								<li>Get support when you’re stuck</li>
